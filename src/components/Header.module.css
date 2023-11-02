@@ -1,0 +1,12 @@
+.header {
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 35%;
+}
+
+.header-name {
+  margin-bottom: 0;
+}
