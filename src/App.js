@@ -5,8 +5,8 @@ import { useState } from "react";
 import { DataList } from "./components/DataList";
 
 const data = [
-  { taskTitle: "Drink coffee", id: "1" },
-  { taskTitle: "Go to the gym", id: "2" },
+  { taskTitle: "Drink coffee", id: "1", key: "1" },
+  { taskTitle: "Go to the gym", id: "2", key: "2" },
 ];
 
 function App() {
