@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className={style.wrap}>
-      <Header />
+      <Header totalTaskCount={dataState.length} />
       <DataList data={dataState} />
       <Form onAddNewData={changeDataHandler} />
     </div>
