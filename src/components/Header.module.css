@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  width: 35%;
+  max-width: 350px;
 }
 
 .header-name {
