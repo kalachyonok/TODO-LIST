@@ -18,10 +18,17 @@ function App() {
     });
   };
 
+  console.log(dataState);
+
+  const upgradeDataHandler = (newData) => {
+    // сюда всунуть логику из DataList
+    setData(newData);
+  };
+
   return (
     <div className={style.wrap}>
       <Header totalTaskCount={dataState.length} />
-      <DataList data={dataState} />
+      <DataList data={dataState} onUpgradeData={upgradeDataHandler} />
       <Form onAddNewData={changeDataHandler} />
     </div>
   );
