@@ -20,9 +20,16 @@ function App() {
 
   console.log(dataState);
 
-  const upgradeDataHandler = (newData) => {
-    // сюда всунуть логику из DataList
-    setData(newData);
+  const upgradeDataHandler = (delitedItemId) => {
+    const indexDelitItem = dataState.findIndex(
+      (task) => task.id === delitedItemId
+    );
+
+    const shangedData = [...dataState];
+
+    shangedData.splice(indexDelitItem, 1);
+
+    setData(shangedData);
   };
 
   return (
