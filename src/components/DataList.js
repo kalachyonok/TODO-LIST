@@ -13,6 +13,7 @@ export const DataList = (props) => {
             isDone={task.isDone}
             onChildClick={props.onUpgradeData}
             onDoImportant={props.onChangeImportantTask}
+            onDoDone={props.onChangeDoneTask}
           />
         );
       })}

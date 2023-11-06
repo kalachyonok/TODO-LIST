@@ -63,6 +63,23 @@ function App() {
     setData(changedData);
   };
 
+  const changeDoneTaskHandler = (doneID) => {
+    const indexDoneItem = dataState.findIndex((task) => task.id === doneID);
+
+    let doneTask = dataState[indexDoneItem];
+
+    doneTask = {
+      ...doneTask,
+      isDone: !doneTask.isDone,
+    };
+
+    const changedData = [...dataState];
+
+    changedData.splice(indexDoneItem, 1, doneTask);
+
+    setData(changedData);
+  };
+
   return (
     <div className={style.wrap}>
       <Header totalTaskCount={dataState.length} />
@@ -70,6 +87,7 @@ function App() {
         data={dataState}
         onUpgradeData={upgradeDataHandler}
         onChangeImportantTask={changeImportantTaskHandler}
+        onChangeDoneTask={changeDoneTaskHandler}
       />
       <Form onAddNewData={changeDataHandler} />
     </div>

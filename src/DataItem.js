@@ -17,9 +17,24 @@ export const DataItem = (props) => {
     props.onDoImportant(importantID);
   };
 
+  const doDoneHandler = (e) => {
+    e.preventDefault();
+
+    const doneID = props.id;
+
+    props.onDoDone(doneID);
+  };
+
+  const importantStyle = props.isImportant ? style.important : "";
+  const doneStyle = props.isDone ? style.done : "";
+
   return (
     <li className={`list-group-item ${style.li}`}>
-      <div className={props.isImportant ? style.important : ""}>
+      <div
+        // className={props.isImportant ? style.important : ""}
+        className={`style.title ${doneStyle} ${importantStyle}`}
+        onClick={doDoneHandler}
+      >
         {props.title}
       </div>
       <div className={style["btn-set"]}>
