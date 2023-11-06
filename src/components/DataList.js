@@ -9,7 +9,10 @@ export const DataList = (props) => {
             title={task.taskTitle}
             key={task.id}
             id={task.id}
+            isImportant={task.isImportant}
+            isDone={task.isDone}
             onChildClick={props.onUpgradeData}
+            onDoImportant={props.onChangeImportantTask}
           />
         );
       })}

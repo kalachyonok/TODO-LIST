@@ -8,3 +8,8 @@
   display: flex;
   gap: 5px;
 }
+
+.important {
+  font-weight: 700;
+  color: #4682b4;
+}

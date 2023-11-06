@@ -9,9 +9,19 @@ export const DataItem = (props) => {
     props.onChildClick(delitedItemId);
   };
 
+  const doImportantHandler = (e) => {
+    e.preventDefault();
+
+    const importantID = props.id;
+
+    props.onDoImportant(importantID);
+  };
+
   return (
     <li className={`list-group-item ${style.li}`}>
-      {props.title}
+      <div className={props.isImportant ? style.important : ""}>
+        {props.title}
+      </div>
       <div className={style["btn-set"]}>
         <button
           type="button"
@@ -20,7 +30,11 @@ export const DataItem = (props) => {
         >
           DEL
         </button>
-        <button type="button" className="btn btn-outline-success">
+        <button
+          type="button"
+          className="btn btn-outline-success"
+          onClick={doImportantHandler}
+        >
           !
         </button>
       </div>

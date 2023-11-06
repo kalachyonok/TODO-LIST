@@ -14,6 +14,8 @@ export const Form = (props) => {
     const newTask = {
       taskTitle: inputName,
       id: Math.random().toString(),
+      isImportant: false,
+      isDone: false,
     };
 
     props.onAddNewData(newTask);

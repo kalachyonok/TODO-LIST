@@ -5,8 +5,20 @@ import { useState } from "react";
 import { DataList } from "./components/DataList";
 
 const data = [
-  { taskTitle: "Drink coffee", id: "1", key: "1" },
-  { taskTitle: "Go to the gym", id: "2", key: "2" },
+  {
+    taskTitle: "Drink coffee",
+    id: "1",
+    key: "1",
+    isImportant: false,
+    isDone: false,
+  },
+  {
+    taskTitle: "Go to the gym",
+    id: "2",
+    key: "2",
+    isImportant: false,
+    isDone: false,
+  },
 ];
 
 function App() {
@@ -25,17 +37,40 @@ function App() {
       (task) => task.id === delitedItemId
     );
 
-    const shangedData = [...dataState];
+    const changedData = [...dataState];
 
-    shangedData.splice(indexDelitItem, 1);
+    changedData.splice(indexDelitItem, 1);
 
-    setData(shangedData);
+    setData(changedData);
+  };
+
+  const changeImportantTaskHandler = (importantID) => {
+    const indexImportantItem = dataState.findIndex(
+      (task) => task.id === importantID
+    );
+
+    let importantTask = dataState[indexImportantItem];
+
+    importantTask = {
+      ...importantTask,
+      isImportant: !importantTask.isImportant,
+    };
+
+    const changedData = [...dataState];
+
+    changedData.splice(indexImportantItem, 1, importantTask);
+
+    setData(changedData);
   };
 
   return (
     <div className={style.wrap}>
       <Header totalTaskCount={dataState.length} />
-      <DataList data={dataState} onUpgradeData={upgradeDataHandler} />
+      <DataList
+        data={dataState}
+        onUpgradeData={upgradeDataHandler}
+        onChangeImportantTask={changeImportantTaskHandler}
+      />
       <Form onAddNewData={changeDataHandler} />
     </div>
   );
