@@ -1,6 +1,7 @@
 import style from "./Header.module.css";
+import { memo } from "react";
 
-export const Header = ({ doneTaskCount, totalToDoTask }) => {
+export const Header = memo(({ doneTaskCount, totalToDoTask }) => {
   return (
     <div className={style.header}>
       <h1 className={style["header-name"]}>Todo List</h1>
@@ -9,4 +10,4 @@ export const Header = ({ doneTaskCount, totalToDoTask }) => {
       </div>
     </div>
   );
-};
+});
