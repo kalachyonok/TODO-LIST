@@ -74,9 +74,15 @@ function App() {
     setData(changedData);
   };
 
+  const doneTaskCount = dataState.reduce((sum, current) => {
+    return current.isDone ? sum + 1 : sum + 0;
+  }, 0);
+
+  const totalToDoTask = dataState.length - doneTaskCount;
+
   return (
     <div className={style.wrap}>
-      <Header totalTaskCount={dataState.length} />
+      <Header doneTaskCount={doneTaskCount} totalToDoTask={totalToDoTask} />
       <Filter />
       <DataList
         data={dataState}
