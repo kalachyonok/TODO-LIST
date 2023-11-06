@@ -1,7 +1,11 @@
 import style from "./Form.module.css";
 import { useState } from "react";
+import { memo } from "react";
+import { useCallback } from "react";
 
-export const Form = (props) => {
+export const Form = memo((props) => {
+  console.log("Form render");
+
   const [inputName, setInputName] = useState("");
 
   const changeHandler = (event) => {
@@ -37,4 +41,4 @@ export const Form = (props) => {
       </button>
     </form>
   );
-};
+});

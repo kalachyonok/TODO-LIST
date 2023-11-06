@@ -1,28 +1,14 @@
 import style from "./DataItem.module.css";
 
 export const DataItem = (props) => {
-  const deliteItemHandler = (e) => {
-    e.preventDefault();
-
-    const delitedItemId = props.id;
-
-    props.onChildClick(delitedItemId);
+  const deleteItemHandler = () => {
+    const deletedItemId = props.id;
+    props.onDeleteClick(deletedItemId);
   };
 
-  const doImportantHandler = (e) => {
-    e.preventDefault();
-
-    const importantID = props.id;
-
-    props.onDoImportant(importantID);
-  };
-
-  const doDoneHandler = (e) => {
-    e.preventDefault();
-
-    const doneID = props.id;
-
-    props.onDoDone(doneID);
+  const makeItemDoneHandler = () => {
+    const doneId = props.id;
+    props.onClickDoneTask(doneId);
   };
 
   const importantStyle = props.isImportant ? style.important : "";
@@ -31,9 +17,8 @@ export const DataItem = (props) => {
   return (
     <li className={`list-group-item ${style.li}`}>
       <div
-        // className={props.isImportant ? style.important : ""}
-        className={`style.title ${doneStyle} ${importantStyle}`}
-        onClick={doDoneHandler}
+        className={`${style.title} ${doneStyle} ${importantStyle}`}
+        onClick={makeItemDoneHandler}
       >
         {props.title}
       </div>
@@ -41,14 +26,14 @@ export const DataItem = (props) => {
         <button
           type="button"
           className="btn btn-outline-danger"
-          onClick={deliteItemHandler}
+          onClick={deleteItemHandler}
         >
           DEL
         </button>
         <button
           type="button"
           className="btn btn-outline-success"
-          onClick={doImportantHandler}
+          onClick={() => props.onClickImportantTask(props.id)}
         >
           !
         </button>

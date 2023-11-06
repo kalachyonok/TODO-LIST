@@ -11,9 +11,9 @@ export const DataList = (props) => {
             id={task.id}
             isImportant={task.isImportant}
             isDone={task.isDone}
-            onChildClick={props.onUpgradeData}
-            onDoImportant={props.onChangeImportantTask}
-            onDoDone={props.onChangeDoneTask}
+            onDeleteClick={props.onDeleteItem}
+            onClickImportantTask={props.onChangeImportantTask}
+            onClickDoneTask={props.onChangeDoneTask}
           />
         );
       })}

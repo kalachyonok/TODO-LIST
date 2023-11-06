@@ -18,6 +18,6 @@
   text-decoration: line-through;
 }
 
-title:hover {
+.title:hover {
   cursor: pointer;
 }

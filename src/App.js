@@ -1,8 +1,9 @@
 import { Header } from "./components/Header";
 import { Form } from "./components/Form";
 import style from "./App.module.css";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { DataList } from "./components/DataList";
+import { Filter } from "./components/Filter";
 
 const data = [
   {
@@ -24,23 +25,22 @@ const data = [
 function App() {
   const [dataState, setData] = useState(data);
 
-  const changeDataHandler = (newTask) => {
-    setData((prevDataState) => {
-      return [...prevDataState, newTask];
-    });
-  };
+  const changeDataHandler = useCallback(
+    (newTask) => {
+      setData((prevDataState) => {
+        return [...prevDataState, newTask];
+      });
+    },
+    [setData]
+  );
 
-  console.log(dataState);
-
-  const upgradeDataHandler = (delitedItemId) => {
+  const deleteItemHandler = (delitedItemId) => {
     const indexDelitItem = dataState.findIndex(
       (task) => task.id === delitedItemId
     );
 
     const changedData = [...dataState];
-
     changedData.splice(indexDelitItem, 1);
-
     setData(changedData);
   };
 
@@ -49,43 +49,38 @@ function App() {
       (task) => task.id === importantID
     );
 
-    let importantTask = dataState[indexImportantItem];
-
-    importantTask = {
-      ...importantTask,
-      isImportant: !importantTask.isImportant,
+    const targetTAsk = dataState[indexImportantItem];
+    const updatedImportantTask = {
+      ...targetTAsk,
+      isImportant: !targetTAsk.isImportant,
     };
 
     const changedData = [...dataState];
-
-    changedData.splice(indexImportantItem, 1, importantTask);
-
+    changedData.splice(indexImportantItem, 1, updatedImportantTask);
     setData(changedData);
   };
 
-  const changeDoneTaskHandler = (doneID) => {
-    const indexDoneItem = dataState.findIndex((task) => task.id === doneID);
+  const changeDoneTaskHandler = (doneId) => {
+    const indexDoneItem = dataState.findIndex((task) => task.id === doneId);
 
-    let doneTask = dataState[indexDoneItem];
-
-    doneTask = {
-      ...doneTask,
-      isDone: !doneTask.isDone,
+    const targetTAsk = dataState[indexDoneItem];
+    const updatedDoneTask = {
+      ...targetTAsk,
+      isDone: !targetTAsk.isDone,
     };
 
     const changedData = [...dataState];
-
-    changedData.splice(indexDoneItem, 1, doneTask);
-
+    changedData.splice(indexDoneItem, 1, updatedDoneTask);
     setData(changedData);
   };
 
   return (
     <div className={style.wrap}>
       <Header totalTaskCount={dataState.length} />
+      <Filter />
       <DataList
         data={dataState}
-        onUpgradeData={upgradeDataHandler}
+        onDeleteItem={deleteItemHandler}
         onChangeImportantTask={changeImportantTaskHandler}
         onChangeDoneTask={changeDoneTaskHandler}
       />
