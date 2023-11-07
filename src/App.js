@@ -24,6 +24,7 @@ const data = [
 
 function App() {
   const [dataState, setData] = useState(data);
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const changeDataHandler = useCallback(
     (newTask) => {
@@ -83,7 +84,7 @@ function App() {
   return (
     <div className={style.wrap}>
       <Header doneTaskCount={doneTaskCount} totalToDoTask={totalToDoTask} />
-      <Filter />
+      <Filter changeState={setActiveFilter} activeFilter={activeFilter} />
       <DataList
         data={dataState}
         onDeleteItem={deleteItemHandler}
