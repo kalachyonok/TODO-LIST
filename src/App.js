@@ -81,12 +81,28 @@ function App() {
 
   const totalToDoTask = dataState.length - doneTaskCount;
 
+  const filteredData = (tagFilter) => {
+    if (tagFilter === "all") {
+      return dataState;
+    }
+
+    if (tagFilter === "active") {
+      return dataState.filter((item) => item.isDone === false);
+    }
+
+    if (tagFilter === "done") {
+      return dataState.filter((item) => item.isDone === true);
+    }
+  };
+
+  const filteredDataState = filteredData(activeFilter);
+
   return (
     <div className={style.wrap}>
       <Header doneTaskCount={doneTaskCount} totalToDoTask={totalToDoTask} />
       <Filter changeState={setActiveFilter} activeFilter={activeFilter} />
       <DataList
-        data={dataState}
+        data={filteredDataState}
         onDeleteItem={deleteItemHandler}
         onChangeImportantTask={changeImportantTaskHandler}
         onChangeDoneTask={changeDoneTaskHandler}
