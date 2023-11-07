@@ -25,6 +25,7 @@ const data = [
 function App() {
   const [dataState, setData] = useState(data);
   const [activeFilter, setActiveFilter] = useState("all");
+  const [inputValue, setInputValue] = useState("");
 
   const changeDataHandler = useCallback(
     (newTask) => {
@@ -85,24 +86,33 @@ function App() {
     if (tagFilter === "all") {
       return dataState;
     }
-
     if (tagFilter === "active") {
       return dataState.filter((item) => item.isDone === false);
     }
-
     if (tagFilter === "done") {
       return dataState.filter((item) => item.isDone === true);
     }
   };
-
   const filteredDataState = filteredData(activeFilter);
+
+  const filteredDataByInputValue = (searchValue) => {
+    return filteredDataState.filter((item) =>
+      item.taskTitle.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  };
+  const filteredDataStateByInputValue = filteredDataByInputValue(inputValue);
 
   return (
     <div className={style.wrap}>
       <Header doneTaskCount={doneTaskCount} totalToDoTask={totalToDoTask} />
-      <Filter changeState={setActiveFilter} activeFilter={activeFilter} />
+      <Filter
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        changeState={setActiveFilter}
+        activeFilter={activeFilter}
+      />
       <DataList
-        data={filteredDataState}
+        data={filteredDataStateByInputValue}
         onDeleteItem={deleteItemHandler}
         onChangeImportantTask={changeImportantTaskHandler}
         onChangeDoneTask={changeDoneTaskHandler}

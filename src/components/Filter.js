@@ -1,7 +1,7 @@
 import style from "./Filter.module.css";
 
 export const Filter = (props) => {
-  // props.activeFilter;
+  const { inputValue, setInputValue } = props;
 
   return (
     <form className={`top-panel d-flex ${style.filter}`}>
@@ -9,6 +9,10 @@ export const Filter = (props) => {
         className="form-control search-input "
         type="text"
         placeholder="type to search"
+        onChange={(e) => {
+          setInputValue(e.target.value);
+        }}
+        value={inputValue}
       />
       <div className="btn-group">
         <button
